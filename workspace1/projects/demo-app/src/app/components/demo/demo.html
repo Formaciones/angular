@@ -1,0 +1,41 @@
+<br />
+<br />
+<div class="row">
+    <div class="col-1"> </div>
+    <div class="col-5">
+        <h2>Demo Component</h2>
+        <p>Relación entre componentes y Binding Angular.</p>
+        <hr />
+        <br />
+        <p><b>Interpolación (texto):</b> {{ texto }}</p>
+        <p><b>Interpolación (texto + 10):</b> {{ texto + 10}}</p>
+        <p><b>Interpolación (numero):</b> {{ numero }}</p>
+        <p><b>Interpolación (numero + 10):</b> {{ numero + 10}}</p>
+        <p><b>Interpolación (numero x 10):</b> {{ numero * 10}}</p>
+        <p><b>Atributo HTML (texto):</b> <span [innerHTML]="texto"></span></p>
+        <p>
+            <input type="text" class="form-control" [value]="texto" (input)="onChange($event)" />
+            <input type="text" class="form-control" [(ngModel)]="texto" />
+            <input type="text" class="form-control" [(ngModel)]="foto" />
+        </p>
+        <button type="button" class="btn btn-primary" on-click="cambiarImagen()">Cambiar Imagen</button>
+        &nbsp;
+        <button type="button" class="btn btn-success" (click)="aumentarImagen()">+</button>
+        &nbsp;
+        <button type="button" class="btn btn-danger" (click)="reducirImagen();">-</button>
+        <br /><br />
+    </div>
+    <div class="col-5"> 
+        <p><img src="https://cdn.mesemar.com/wp-content/uploads/pexels-photo-457882-800x534.jpeg" style="width: 200px; height: auto;" /></p>
+        <p><img src="{{foto}}" style="width: 200px; height: auto;" /></p>
+        <p><img [src]="foto" style="height: auto;" [style.width.px]="ancho" /></p>
+        <p><img [attr.src]="foto" (mouseenter)="mostrarMensaje($event)" style="width: 200px; height: auto;" /></p>
+        <br />
+        <!-- No utilizar onclick con JS -->
+        <button type="button" class="btn btn-primary" 
+            onclick="javascript:alert('No utilizar !!!');" (click)="mostrarMensaje($event)">Demo</button>
+        &nbsp;
+        <button type="button" class="btn btn-primary" on-click="mostrarMensaje($event)">Demo</button>            
+    </div>
+    <div class="col-1"> </div>
+</div>
