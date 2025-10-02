@@ -23,6 +23,17 @@
         <button type="button" class="btn btn-success" (click)="aumentarImagen()">+</button>
         &nbsp;
         <button type="button" class="btn btn-danger" (click)="reducirImagen();">-</button>
+        <br />
+        <br />
+        <!-- Uso de Angular Material, ejemplo botón -->
+        <button type="button" matFab extended (click)="cambiarImagen()">
+            <mat-icon>favorite</mat-icon>
+            Cambiar Imagen
+        </button>
+        &nbsp;
+        <mat-slider min="1" max="500" step="1">
+            <input matSliderThumb [(ngModel)]="numero" />
+        </mat-slider>
         <br /><br />
     </div>
     <div class="col-5"> 
