@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body { 
+  margin-bottom: 30px; 
+  font-family: Roboto, 
+  "Helvetica Neue", sans-serif; 
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* para que quede encima del contenido */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+main {
+  flex: 1;
+  margin-top: 70px;   /* alto del header */
+  margin-bottom: 60px; /* alto del footer */
+  overflow-y: auto;
+  overflow-x: hidden;  /* 🔹 oculta scroll horizontal */
+}
+
+.navbar {
+  background-color: rgba(153, 38, 38, 0.2) !important;
+}
