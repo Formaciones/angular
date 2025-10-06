@@ -20,19 +20,27 @@
                         Otra forma de hacerlo sin usar un método: 
                         <tr *ngFor="let user of usersList" (click)="selectUser = user"> 
                         -->
-                        <tr *ngFor="let user of usersList" (click)="onSelectUser(user)">
+                        <tr *ngFor="let user of usersList | sort : 'office' : 'asc'" 
+                            (click)="onSelectUser(user)" class="clickuser">
                             <td>{{user.id}}</td>
                             <td>{{user.firstname}} {{user.lastname}}</td>
                             <td>{{user.office}}</td>
-                            <td><span class="badge bg-success">{{user.online}}</span></td>
+                            <td><span class="badge bg-success">{{user.online | siono : 'On' : 'Off'}}</span></td>
                         </tr>
                     </tbody>
                 </table>
                 <br />
-                <p><b>Usuario seleccionado:</b> {{selectUser.firstname}} {{selectUser.lastname}}</p>
+                <p><b>Usuario seleccionado:</b> {{selectUser.firstname}} {{selectUser.lastname | uppercase}}</p>
+                <p><b>Fecha actual:</b> {{fecha | date: 'fullDate'}}</p>
+                <p><b>Fecha actual:</b> {{fecha | date: 'EEEE, dd MMMM yyyy'}}</p>
+                <br />
+                <p><b>Fecha actual (obsevable): {{ time | async | date : 'full' }}</b></p>
+                <br />
+                <p><b>Moneda:</b> {{moneda | currency: 'EUR': true: '1.2'}}</p>
+                <p><b>Porcentaje:</b> {{ 0.25 | percent: '1.2'}}</p>
             </div>
             <div class="col-6">
-                <app-detail #detalle [usuarioHijo]="selectUser" (usuarioSave)="onUsuarioSaveEmirt($event)"></app-detail>
+                <app-detail *ngIf="mostrarDetalle" #detalle [usuarioHijo]="selectUser" (usuarioSave)="onUsuarioSaveEmirt($event)"></app-detail>
             </div>
         </div>
     </div> 
