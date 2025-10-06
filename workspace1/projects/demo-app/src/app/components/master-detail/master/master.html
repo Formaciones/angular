@@ -16,17 +16,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Juan Pérez</td>
-                            <td>Madrid</td>
-                            <td><span class="badge bg-success">Sí</span></td>
+                        <!--
+                        Otra forma de hacerlo sin usar un método: 
+                        <tr *ngFor="let user of usersList" (click)="selectUser = user"> 
+                        -->
+                        <tr *ngFor="let user of usersList" (click)="onSelectUser(user)">
+                            <td>{{user.id}}</td>
+                            <td>{{user.firstname}} {{user.lastname}}</td>
+                            <td>{{user.office}}</td>
+                            <td><span class="badge bg-success">{{user.online}}</span></td>
                         </tr>
                     </tbody>
                 </table>
+                <br />
+                <p><b>Usuario seleccionado:</b> {{selectUser.firstname}} {{selectUser.lastname}}</p>
             </div>
             <div class="col-6">
-                <app-detail></app-detail>
+                <app-detail #detalle [usuarioHijo]="selectUser" (usuarioSave)="onUsuarioSaveEmirt($event)"></app-detail>
             </div>
         </div>
     </div> 
