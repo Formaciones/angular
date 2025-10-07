@@ -5,12 +5,15 @@ import data from '../../../data/usersData.json';
 import { User } from '../../../models/user.model';
 import { Observable } from 'rxjs';
 
+import { SionoPipe } from '../../../pipes/siono-pipe';
+
 
 @Component({
   selector: 'app-master',
   standalone: false,
   templateUrl: './master.html',
-  styleUrl: './master.css'
+  styleUrl: './master.css',
+  providers: [SionoPipe] // Si no se pone aquí debemos ponerlo en providers del módulo. Esta instancia es única para este componente y sus hijos.
 })
 export class Master {
   usersList: Array<User>;
@@ -27,7 +30,13 @@ export class Master {
 
   time: Observable<string>;
 
-  constructor() {
+  columOrder: string;
+  typeOrder: 'asc'| 'desc';
+
+  varTestData : boolean;
+  varTestResult: string;
+
+  constructor(private mySionoPipe: SionoPipe) {
     this.usersList = data;
     this.selectUser = new User();
 
@@ -42,7 +51,22 @@ export class Master {
         observer.next(now.toString());
       }, 1000); 
     });
+
+    this.columOrder = 'id';
+    this.typeOrder = 'asc';
+
+    this.varTestData = true;
+    this.varTestResult = mySionoPipe.transform(this.varTestData, 'Ok', 'NOk');
   } 
+
+  onSortColumn(colum: string) {
+    if (this.columOrder === colum) {
+      this.typeOrder = this.typeOrder === 'asc' ? 'desc' : 'asc'; 
+    } else {
+      this.columOrder = colum;
+      this.typeOrder = 'asc';
+    }
+  }
 
   onSelectUser(user: User) {
     this.selectUser = user;

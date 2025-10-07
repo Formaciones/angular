@@ -8,11 +8,11 @@
             <div class="col-6">
                 <table class="table table-responsive table-striped">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Ciudad</th>
-                            <th>Online</th>
+                        <tr class="clickuser">
+                            <th (click)="onSortColumn('id')" class="clickuser">ID</th>
+                            <th (click)="onSortColumn('firstname')" class="clickuser">Nombre</th>
+                            <th (click)="onSortColumn('office')" class="clickuser">Ciudad</th>
+                            <th (click)="onSortColumn('online')" class="clickuser">Online</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,7 +20,7 @@
                         Otra forma de hacerlo sin usar un método: 
                         <tr *ngFor="let user of usersList" (click)="selectUser = user"> 
                         -->
-                        <tr *ngFor="let user of usersList | sort : 'office' : 'asc'" 
+                        <tr *ngFor="let user of usersList | sort : columOrder : typeOrder" 
                             (click)="onSelectUser(user)" class="clickuser">
                             <td>{{user.id}}</td>
                             <td>{{user.firstname}} {{user.lastname}}</td>
@@ -38,6 +38,8 @@
                 <br />
                 <p><b>Moneda:</b> {{moneda | currency: 'EUR': true: '1.2'}}</p>
                 <p><b>Porcentaje:</b> {{ 0.25 | percent: '1.2'}}</p>
+                <p><b>Transformación de [{{varTestData}}] mediante código:</b> {{varTestResult}}</p>
+                <p><b>Transformación de [{{varTestData}}] mediante IU:</b> {{varTestData | siono : 'Ok': 'NOk'}}</p>
             </div>
             <div class="col-6">
                 <app-detail *ngIf="mostrarDetalle" #detalle [usuarioHijo]="selectUser" (usuarioSave)="onUsuarioSaveEmirt($event)"></app-detail>

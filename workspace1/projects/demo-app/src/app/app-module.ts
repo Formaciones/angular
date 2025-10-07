@@ -31,19 +31,31 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { SortPipe } from './pipes/sort-pipe';
+import { Directives } from './components/directives/directives';
+import { Colorauto } from './derectives/colorauto';
+import { Customer } from './components/customer/customer';
+import { CustomerService } from './services/customer';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
-  declarations: [App, Demo, Demo2, Demo3, Demo4, Home, Master, Detail, SionoPipe, SortPipe],
+  declarations: [
+    App, Demo, Demo2, Demo3, Demo4, Home, Master, Detail, Directives, 
+    SionoPipe, SortPipe,
+    Colorauto,
+    Customer
+  ],
   imports: [
     BrowserModule,
     RouterOutlet, RouterModule,
     AppRoutingModule,
-    FormsModule, MatButtonModule, MatIconModule, MatSliderModule
+    FormsModule, HttpClientModule,
+    MatButtonModule, MatIconModule, MatSliderModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    { provide: LOCALE_ID, useValue: 'es' } // Para usar fechas en es-ES
+    { provide: LOCALE_ID, useValue: 'es' }, // Para usar fechas en es-ES
+    SionoPipe, // Si no se pone aquí debemos ponerlo en providers del componente. Esta instancia es singleton, compartida con todos los elementos del modulo.
   ],
   bootstrap: [App]
 })

@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-1"> </div>
+    <div class="col">
+        <h1 colorauto [color]="colorSeleccionado" [bgColor]="bgSeleccionado">Demo: Trabajando con directivas</h1>
+        <hr />
+        <br />
+        <input colorauto type="text" class="form-control" value="Demo directivas" />
+        <br />
+        <p colorauto [bgColor]="bgSeleccionado">{{texto}}</p>
+        <div class="form-grop">
+            <label>Color</label>
+            <select class="form-select" [(ngModel)]="colorSeleccionado">
+                <option *ngFor="let item of colores"
+                    [selected]="item.toLowerCase() === colorSeleccionado"
+                    [value]="item.toLowerCase()">{{item}}</option>
+            </select>
+            <br />
+            <p><b>Color Seleccionado:</b> {{colorSeleccionado}}</p>
+            <br />
+            <label>Color</label>
+            <select class="form-select" [(ngModel)]="bgSeleccionado">
+                <option *ngFor="let item of colores"
+                    [selected]="item.toLowerCase() === bgSeleccionado"
+                    [value]="item.toLowerCase()">{{item}}</option>
+            </select>        
+            <br />
+            <p><b>Fondo Seleccionado:</b> {{bgSeleccionado}}</p>                
+        </div>
+    </div>
+    <div class="col-1"> </div>
+</div>
