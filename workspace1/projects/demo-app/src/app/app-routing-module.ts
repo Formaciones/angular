@@ -5,14 +5,17 @@ import { Home } from './components/home/home';
 import { Demo } from './components/demo/demo';
 import { Master } from './components/master-detail/master/master';
 import { Directives } from './components/directives/directives';
-import { Customer } from './components/customer/customer';
+import { CustomerComponent } from './components/customer/customer';
+import { AuthGuard } from './services/auth.guard';
+import { Login } from './components/login/login';
 
 const routes: Routes = [
   {path: 'home', component: Home},  
   {path: 'demos', component: Demo},
   {path: 'master-detail', component: Master},
   {path: 'directivas', component: Directives},
-  {path: 'customers', component: Customer},
+  {path: 'customers', component: CustomerComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: Login},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 

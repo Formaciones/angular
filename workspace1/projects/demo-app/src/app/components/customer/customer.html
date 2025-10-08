@@ -4,7 +4,34 @@
         <h1>Demo: Trabajando con servicios Rest</h1>
         <hr />
         <br />
-        <textarea class="form-control" rows="20">{{clientes | json}}</textarea>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Empresa</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td>{{customer.customerID}}</td>
+                    <td>{{customer.companyName}}</td>
+                    <td>
+                        {{customer.address}}
+                        <br />
+                        <small>{{customer.postalCode}} {{customer.city}}</small>
+                        <br />
+                        <small>{{customer.country}}</small>
+                    </td>
+                    <td>{{customer.phone}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success">ver ficha</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <br />
         <button class="btn btn-success" (click)="getClientes()">Cargar Clientes</button>
     </div>

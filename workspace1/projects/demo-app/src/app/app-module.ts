@@ -33,9 +33,10 @@ import { LOCALE_ID } from '@angular/core';
 import { SortPipe } from './pipes/sort-pipe';
 import { Directives } from './components/directives/directives';
 import { Colorauto } from './derectives/colorauto';
-import { Customer } from './components/customer/customer';
+import { CustomerComponent } from './components/customer/customer';
 import { CustomerService } from './services/customer';
 import { HttpClientModule } from '@angular/common/http';
+import { Login } from './components/login/login';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localeEs, 'es');
     App, Demo, Demo2, Demo3, Demo4, Home, Master, Detail, Directives, 
     SionoPipe, SortPipe,
     Colorauto,
-    Customer
+    CustomerComponent,
+    Login
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer';
+import { Customer } from '../../models/customer.model';
 
 @Component({
   selector: 'app-customer',
@@ -7,18 +8,18 @@ import { CustomerService } from '../../services/customer';
   templateUrl: './customer.html',
   styleUrl: './customer.css'
 })
-export class Customer {
-  clientes: Array<Customer>;
+export class CustomerComponent {
+  customers: Array<Customer>;
 
   constructor(private customerService: CustomerService) { 
-    this.clientes = new Array<Customer>();
+    this.customers = new Array<Customer>();
   } 
 
   getClientes(): void {
     console.log('getClientes');
-    this.customerService.getCustomers().subscribe((data: any) => {
+    this.customerService.getCustomers().subscribe((data: Array<Customer>) => {
       console.log('getClientes response');
-      this.clientes = data;
+      this.customers = data;
     });
   }
 }
