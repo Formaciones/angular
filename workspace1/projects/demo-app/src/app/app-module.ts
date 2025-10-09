@@ -35,9 +35,10 @@ import { Directives } from './components/directives/directives';
 import { Colorauto } from './derectives/colorauto';
 import { CustomerComponent } from './components/customer/customer';
 import { CustomerService } from './services/customer';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Login } from './components/login/login';
 import { CustomerDetail } from './components/customer-detail/customer-detail';
+import { ApiKeyInterceptor } from './services/api-key.interceptor';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -60,6 +61,7 @@ registerLocaleData(localeEs, 'es');
     provideBrowserGlobalErrorListeners(),
     { provide: LOCALE_ID, useValue: 'es' }, // Para usar fechas en es-ES
     SionoPipe, // Si no se pone aquí debemos ponerlo en providers del componente. Esta instancia es singleton, compartida con todos los elementos del modulo.
+    { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true}
   ],
   bootstrap: [App]
 })

@@ -23,5 +23,20 @@ export class CustomerComponent implements OnInit {
     this.customerService.getCustomers().subscribe((data: Array<Customer>) => {
       this.customers = data;
     });
+
+    this.customerService.getCustomers().subscribe({
+      next: (data: Array<Customer>) => {
+        this.customers = data;
+      },
+      error: (err) => {
+        // Mensaje del API
+        let error = err.error.message;
+        alert(error);
+        // Mensaje de Angular
+        alert(err.message);
+        // Datos de Angular (estado HTTP)
+        console.log('Error: ' + err.status + ' - ' + err.statusText);
+      }
+    });
   }
 }

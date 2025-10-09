@@ -1,24 +1,96 @@
 <div class="row">
     <div class="col-1"> </div>
     <div class="col-10"> 
-        <h1>Ficha del cliente {{customer?.companyName}}</h1>
+        <h1>Ficha del cliente {{customer.companyName}}</h1>
         <hr />
         <br />
         <p *ngIf="loading" class="text-danger">Cargando cliente ...</p>
         <form *ngIf="!loading" #f="ngForm">
+            <!-- [ngClass]="{'was-validated': id.invalid}" >>> Utilizar con el DIV que contiene la LABEL y el INPUT-->
             <div class="form-group" [ngClass]="{'was-validated': id.invalid}">
                 <label class="form-label"><b>Identificador</b></label>
-                <input type="text" class="form-control" name="id" 
+                <input type="text" class="form-control" name="id"
                     [(ngModel)]="customer!.customerID" #id="ngModel" required />
                 <div *ngIf="id.invalid" class="text-danger">El Identificador es obligatorio.</div>
             </div>
             <br />
+            <!-- [ngClass]="{'is-invalid': companyname.invalid, 'is-valid': companyname.valid}" >>> Utilizar en el INPUT-->
             <div class="form-group">
                 <label class="form-label"><b>Empresa</b></label>
-                <input type="text" class="form-control" name="companyName" 
-                    [(ngModel)]="customer!.companyName" #id="ngModel" required />
-                <div class="text-danger">El nombe de la empresa es obligatorio.</div>
+                <input type="text" class="form-control" name="companyName" [ngClass]="{'is-invalid': companyname.invalid, 'is-valid': companyname.valid}"
+                    [(ngModel)]="customer!.companyName" #companyname="ngModel" required />
+                <div *ngIf="companyname.invalid" class="text-danger">El nombe de la empresa es obligatorio.</div>
             </div>
+            <br />
+            <div class="form-group" [ngClass]="{'was-validated': contactname.invalid}">
+                <label class="form-label"><b>Contacto</b></label>
+                <input type="text" class="form-control" name="contactName" minlength="5" maxlength="50" required
+                    [(ngModel)]="customer!.contactName" #contactname="ngModel" />
+                <!-- Varios mensajes de error para un mismo INPUT, SELECT o TEXTAREA-->
+                <div *ngIf="contactname.invalid" class="invalid-feedback">
+                    <div *ngIf="contactname.errors?.['required']">
+                        El contacto es obligatorio.
+                    </div>
+                    <div *ngIf="contactname.errors?.['minlength']">
+                        Debe tener al menos {{ contactname.errors?.['minlength'].requiredLength }} caracteres.
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Cargo</b></label>
+                <input type="text" class="form-control" name="contactTitle" [(ngModel)]="customer!.contactTitle" />
+            </div>
+            <br /> 
+            <div class="form-group">
+                <label class="form-label"><b>Dirección</b></label>
+                <input type="text" class="form-control" name="address" [(ngModel)]="customer!.address" />
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Código Postal</b></label>
+                <input type="text" class="form-control" name="postalCode" [(ngModel)]="customer!.postalCode" />
+            </div>
+            <br /> 
+            <div class="form-group">
+                <label class="form-label"><b>Región</b></label>
+                <input type="text" class="form-control" name="region" [(ngModel)]="customer!.region" />
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Ciudad</b></label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="customer!.city" />
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>País</b></label>
+                <input type="text" class="form-control" name="country" [(ngModel)]="customer!.country" />
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Teléfono</b></label>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="customer!.phone" />
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Fax</b></label>
+                <input type="text" class="form-control" name="fax" [(ngModel)]="customer!.fax" />
+            </div>     
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Contraseña</b></label>
+                <input type="password" class="form-control" name="pass" [(ngModel)]="pass" />
+                <div *ngIf="f.controls['pass']?.errors?.['passwordMismatch']" class="text-danger">Las contraseñas no coinciden.</div>
+            </div> 
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Repite Contraseña</b></label>
+                <input type="password" class="form-control" name="pass2" [(ngModel)]="pass2" />
+                <div *ngIf="f.controls['pass']?.errors?.['passwordMismatch']" class="text-danger">Las contraseñas no coinciden.</div>
+            </div>                         
+            <br />
+            <br />
+            <button (click)="onSumit(f)" type="button" class="btn btn-success" [disabled]="f.invalid">Modificar</button>                                                                                                        
         </form>
     </div>
 </div>
