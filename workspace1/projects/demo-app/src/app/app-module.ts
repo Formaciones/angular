@@ -37,6 +37,7 @@ import { CustomerComponent } from './components/customer/customer';
 import { CustomerService } from './services/customer';
 import { HttpClientModule } from '@angular/common/http';
 import { Login } from './components/login/login';
+import { CustomerDetail } from './components/customer-detail/customer-detail';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localeEs, 'es');
     SionoPipe, SortPipe,
     Colorauto,
     CustomerComponent,
-    Login
+    Login,
+    CustomerDetail
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-1"> </div>
+    <div class="col-10"> 
+        <h1>Ficha del cliente {{customer?.companyName}}</h1>
+        <hr />
+        <br />
+        <p *ngIf="loading" class="text-danger">Cargando cliente ...</p>
+        <form *ngIf="!loading" #f="ngForm">
+            <div class="form-group" [ngClass]="{'was-validated': id.invalid}">
+                <label class="form-label"><b>Identificador</b></label>
+                <input type="text" class="form-control" name="id" 
+                    [(ngModel)]="customer!.customerID" #id="ngModel" required />
+                <div *ngIf="id.invalid" class="text-danger">El Identificador es obligatorio.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="form-label"><b>Empresa</b></label>
+                <input type="text" class="form-control" name="companyName" 
+                    [(ngModel)]="customer!.companyName" #id="ngModel" required />
+                <div class="text-danger">El nombe de la empresa es obligatorio.</div>
+            </div>
+        </form>
+    </div>
+</div>
+

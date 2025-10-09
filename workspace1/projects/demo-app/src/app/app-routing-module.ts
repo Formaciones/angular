@@ -8,6 +8,7 @@ import { Directives } from './components/directives/directives';
 import { CustomerComponent } from './components/customer/customer';
 import { AuthGuard } from './services/auth.guard';
 import { Login } from './components/login/login';
+import { CustomerDetail } from './components/customer-detail/customer-detail';
 
 const routes: Routes = [
   {path: 'home', component: Home},  
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'master-detail', component: Master},
   {path: 'directivas', component: Directives},
   {path: 'customers', component: CustomerComponent, canActivate: [AuthGuard]},
+  {path: 'customers/:id', component: CustomerDetail, canActivate: [AuthGuard]},
   {path: 'login', component: Login},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

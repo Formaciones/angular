@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer';
 import { Customer } from '../../models/customer.model';
 
@@ -8,17 +8,19 @@ import { Customer } from '../../models/customer.model';
   templateUrl: './customer.html',
   styleUrl: './customer.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit {
   customers: Array<Customer>;
 
   constructor(private customerService: CustomerService) { 
     this.customers = new Array<Customer>();
   } 
 
+  ngOnInit(): void {
+    //this.getClientes();
+  }
+
   getClientes(): void {
-    console.log('getClientes');
     this.customerService.getCustomers().subscribe((data: Array<Customer>) => {
-      console.log('getClientes response');
       this.customers = data;
     });
   }

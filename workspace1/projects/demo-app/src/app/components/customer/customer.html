@@ -27,7 +27,7 @@
                     </td>
                     <td>{{customer.phone}}</td>
                     <td>
-                        <button class="btn btn-sm btn-success">ver ficha</button>
+                        <a class="btn btn-sm btn-success" [routerLink]="['/customers', customer.customerID]">ver ficha</a>
                     </td>
                 </tr>
             </tbody>
