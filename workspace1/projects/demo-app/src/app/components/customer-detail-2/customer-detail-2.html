@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="col-1"> </div>
+    <div class="col-10"> 
+        <h1>Ficha del cliente {{customer.companyName}} [Reactive]</h1>
+        <hr />
+        <br />
+        <p *ngIf="loading" class="text-danger">Cargando cliente ...</p>
+
+        <form [formGroup]="customerForm" *ngIf="!loading" (ngSubmit)="onSumit()" novalidate>
+            <!-- Identificador -->
+            <div class="form-group" [ngClass]="{'was-validated': f['customerID'].touched && f['customerID'].invalid}">
+                <label class="form-label"><b>Identificador</b></label>
+                <input type="text" class="form-control"
+                    [ngClass]="{
+                        'is-invalid': f['customerID'].touched && f['customerID'].invalid, 
+                        'is-valid': f['customerID'].touched && f['customerID'].valid 
+                    }"
+                    formControlName="customerID" />
+                <!-- OPCIÓN A: Utiliza el getter (F) definidos en el componente como funciones-->
+                <div *ngIf="f['customerID'].touched && f['customerID'].invalid" class="text-danger">El Identificador es obligatorio.</div>
+            </div>
+            <br />
+
+            <!-- Empresa -->
+            <div class="form-group">
+                <label class="form-label"><b>Empresa</b></label>
+                <input type="text" class="form-control"
+                    [ngClass]="{
+                        'is-invalid': customerForm.get('companyName')?.touched && customerForm.get('companyName')?.invalid, 
+                        'is-valid': customerForm.get('companyName')?.touched && customerForm.get('companyName')?.valid
+                    }"
+                    formControlName="companyName" />
+                <!-- OPCIÓN B: Utiliza la variable customerForm y la función GET-->
+                <div *ngIf="customerForm.get('companyName')?.touched && customerForm.get('companyName')?.invalid" class="text-danger">El nombre de la empresa es obligatorio.</div>
+            </div>
+            <br />
+
+            <!-- Contacto -->
+            <div class="form-group" [ngClass]="{'was-validated': f['contactName'].touched && f['contactName'].invalid}">
+                <label class="form-label"><b>Contacto</b></label>
+                <input type="text" class="form-control"
+                    [ngClass]="{'is-invalid': f['contactName'].touched && f['contactName'].invalid, 'is-valid': f['contactName'].touched && f['contactName'].valid}"
+                    formControlName="contactName" />
+                <!-- Ejemplo de varias validaciones -->
+                <div *ngIf="f['contactName'].touched && f['contactName'].invalid" class="invalid-feedback d-block">
+                    <div *ngIf="f['contactName'].errors?.['required']">El contacto es obligatorio.</div>
+                    <div *ngIf="f['contactName'].errors?.['minlength']">
+                        Debe tener al menos {{ f['contactName'].errors?.['minlength'].requiredLength }} caracteres.
+                    </div>
+                    <div *ngIf="f['contactName'].errors?.['maxlength']">
+                        Máximo {{ f['contactName'].errors?.['maxlength'].requiredLength }} caracteres.
+                    </div>
+                </div>
+            </div>
+            <br /> 
+            
+            <!-- Cargo -->
+            <div class="form-group">
+                <label class="form-label"><b>Cargo</b></label>
+                <input type="text" class="form-control" formControlName="contactTitle" />
+            </div>
+            <br />
+
+            <!-- Dirección -->
+            <div class="form-group">
+                <label class="form-label"><b>Dirección</b></label>
+                <input type="text" class="form-control" formControlName="address" />
+            </div>
+            <br />
+
+            <!-- Código Postal -->
+            <div class="form-group">
+                <label class="form-label"><b>Código Postal</b></label>
+                <input type="text" class="form-control" formControlName="postalCode" />
+            </div>
+            <br />
+
+            <!-- Región -->
+            <div class="form-group">
+                <label class="form-label"><b>Región</b></label>
+                <input type="text" class="form-control" formControlName="region" />
+            </div>
+            <br />
+
+            <!-- Ciudad -->
+            <div class="form-group">
+                <label class="form-label"><b>Ciudad</b></label>
+                <input type="text" class="form-control" formControlName="city" />
+            </div>
+            <br />
+
+            <!-- País -->
+            <div class="form-group">
+                <label class="form-label"><b>País</b></label>
+                <input type="text" class="form-control" formControlName="country" />
+            </div>
+            <br />
+
+            <!-- Teléfono -->
+            <div class="form-group">
+                <label class="form-label"><b>Teléfono</b></label>
+                <input type="text" class="form-control" formControlName="phone" />
+            </div>
+            <br />
+
+            <!-- Fax -->
+            <div class="form-group">
+                <label class="form-label"><b>Fax</b></label>
+                <input type="text" class="form-control" formControlName="fax" />
+            </div>
+            <br />
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label class="form-label"><b>Contraseña</b></label>
+                <input type="password" class="form-control" formControlName="pass" />
+            </div>
+            <br />
+
+            <!-- Repite Contraseña -->
+            <div class="form-group">
+                <label class="form-label"><b>Repite Contraseña</b></label>
+                <input type="password" class="form-control" formControlName="pass2" />
+                <div *ngIf="formGroup.errors?.['passwordMismatch'] && (f['pass'].touched || f['pass2'].touched)" class="text-danger">
+                Las contraseñas no coinciden.
+                </div>
+            </div>
+            <br />           
+            <button type="submit" class="btn btn-success" [disabled]="customerForm.invalid">Modificar</button> 
+        </form>
+    </div>
+</div>
+

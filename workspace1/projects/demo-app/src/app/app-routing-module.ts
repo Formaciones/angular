@@ -9,6 +9,7 @@ import { CustomerComponent } from './components/customer/customer';
 import { AuthGuard } from './services/auth.guard';
 import { Login } from './components/login/login';
 import { CustomerDetail } from './components/customer-detail/customer-detail';
+import { CustomerDetail2 } from './components/customer-detail-2/customer-detail-2';
 
 const routes: Routes = [
   {path: 'home', component: Home},  
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'directivas', component: Directives},
   {path: 'customers', component: CustomerComponent, canActivate: [AuthGuard]},
   {path: 'customers/:id', component: CustomerDetail, canActivate: [AuthGuard]},
+  {path: 'customers2/:id', component: CustomerDetail2, canActivate: [AuthGuard]},
   {path: 'login', component: Login},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

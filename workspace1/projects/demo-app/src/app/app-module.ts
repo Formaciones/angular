@@ -6,7 +6,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 
 // Módulos de Angular
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Módulos de Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +39,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Login } from './components/login/login';
 import { CustomerDetail } from './components/customer-detail/customer-detail';
 import { ApiKeyInterceptor } from './services/api-key.interceptor';
+import { CustomerDetail2 } from './components/customer-detail-2/customer-detail-2';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -48,13 +49,14 @@ registerLocaleData(localeEs, 'es');
     Colorauto,
     CustomerComponent,
     Login,
-    CustomerDetail
+    CustomerDetail,
+    CustomerDetail2
   ],
   imports: [
     BrowserModule,
     RouterOutlet, RouterModule,
     AppRoutingModule,
-    FormsModule, HttpClientModule,
+    FormsModule, HttpClientModule, ReactiveFormsModule,
     MatButtonModule, MatIconModule, MatSliderModule
   ],
   providers: [

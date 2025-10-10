@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../models/customer.model';
+import { ApiKeyInterceptor } from './api-key.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class CustomerService {
   URL: string;
   Headers: HttpHeaders;
 
-  private http2 = inject(HttpClient, { });
+  // No funciona
+  // La idea es crear un cliente HTTP mediante Inyección de Dependencias, que usa un Interceptor
+  // El interceptor no se declara en el Módulo
+  //private http2 = inject(HttpClient, { deps:[ provideHttpClient(withInterceptors([ApiKeyInterceptor])) ]});
   
   constructor(private http: HttpClient) { 
     this.URL = 'https://api-demo-angular.azurewebsites.net/customers';
